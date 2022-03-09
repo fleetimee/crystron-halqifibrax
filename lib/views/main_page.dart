@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dark_magicians/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -28,12 +29,22 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
       text: 'Tab 3',
       icon: Icon(Icons.home),
     ),
-    
   ];
 
-
-
   var tb;
+
+  List<Widget> carouselItem = [
+    Image.network('https://i.4cdn.org/a/1646704287230.jpg'),
+    Image.network('https://i.4cdn.org/a/1646704532092.jpg'),
+    Image.network('https://i.4cdn.org/a/1646705669918.jpg'),
+    Image.network('https://i.4cdn.org/a/1646705733920.jpg'),
+  ];
+  var carouselOption = CarouselOptions(
+    height: 300,
+    aspectRatio: 1,
+    reverse: false,
+    autoPlay: true,
+  );
 
   void initState() {
     super.initState();
@@ -57,7 +68,15 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
               SliverAppBar(
                 pinned: true,
                 flexibleSpace: FlexibleSpaceBar(
-                  background: Image.network('https://i.4cdn.org/a/1646704287230.jpg', fit: BoxFit.cover),
+                  // background: Image.network('https://i.4cdn.org/a/1646704287230.jpg', fit: BoxFit.cover),
+                  background: Container(
+                    height: 300,
+                    alignment: Alignment.topCenter,
+                    child: CarouselSlider(
+                      items: carouselItem,
+                      options: carouselOption,
+                    ),
+                  ),
                 ),
                 bottom: TabBar(
                   tabs: viewTabBarTitle,
