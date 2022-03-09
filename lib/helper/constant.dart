@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
-var URL_BASE = 'http:localhost:3333/';
-var URL_API = URL_BASE + '/api';
+var URL_BASE = 'http://192.168.106.235:3333/';
+var URL_API = URL_BASE + 'api';
 
 var URL_SEMUA_USER = URL_API + '/semua_user';
 var URL_SIMPAN = URL_API + '/simpan';
