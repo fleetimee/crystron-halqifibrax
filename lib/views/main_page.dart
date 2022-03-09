@@ -1,5 +1,9 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:dark_magicians/routes.dart';
+import 'package:dark_magicians/views/tab/favorite.dart';
+import 'package:dark_magicians/views/tab/info.dart';
+import 'package:dark_magicians/views/tab/list_user.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -11,39 +15,54 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   var viewTabBar = [
-    Text('Tab 1'),
-    Text('Tab 2'),
-    Text('Tab 3'),
+    Favorite(),
+    ListUser(),
+    Info(),
   ];
 
   var viewTabBarTitle = [
     Tab(
-      text: 'Tab 1',
-      icon: Icon(Icons.home),
+      text: 'Favorite',
+      icon: Icon(Icons.star),
     ),
     Tab(
-      text: 'Tab 2',
-      icon: Icon(Icons.home),
+      text: 'List User',
+      icon: Icon(Icons.account_box),
     ),
     Tab(
-      text: 'Tab 3',
-      icon: Icon(Icons.home),
+      text: 'Info',
+      icon: Icon(Icons.info),
     ),
   ];
 
   var tb;
 
   List<Widget> carouselItem = [
-    Image.network('https://i.4cdn.org/a/1646704287230.jpg'),
-    Image.network('https://i.4cdn.org/a/1646704532092.jpg'),
-    Image.network('https://i.4cdn.org/a/1646705669918.jpg'),
-    Image.network('https://i.4cdn.org/a/1646705733920.jpg'),
-  ];
+    'https://i.4cdn.org/a/1646704287230.jpg',
+    'https://i.4cdn.org/a/1646704532092.jpg',
+    'https://i.4cdn.org/a/1646705669918.jpg',
+    'https://i.4cdn.org/a/1646705733920.jpg'
+  ].map((i){
+    return Container(
+      margin: EdgeInsets.all(5),
+      child: SafeArea(child: ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+        child: Stack(
+          children: [
+            InkResponse(
+              child: Image.network(i, fit: BoxFit.fill, width: 1000),
+            )
+          ]
+        )
+      )),
+    );
+  }).toList();
   var carouselOption = CarouselOptions(
     height: 300,
     aspectRatio: 1,
     reverse: false,
     autoPlay: true,
+    enlargeCenterPage: true,
   );
 
   void initState() {
@@ -67,10 +86,12 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
             return [
               SliverAppBar(
                 pinned: true,
+                expandedHeight: 200,
                 flexibleSpace: FlexibleSpaceBar(
                   // background: Image.network('https://i.4cdn.org/a/1646704287230.jpg', fit: BoxFit.cover),
                   background: Container(
-                    height: 300,
+                    color: Colors.pink,
+                    height: 350,
                     alignment: Alignment.topCenter,
                     child: CarouselSlider(
                       items: carouselItem,
@@ -79,6 +100,8 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                   ),
                 ),
                 bottom: TabBar(
+                  unselectedLabelColor: Colors.white,
+                  labelColor: Colors.red,
                   tabs: viewTabBarTitle,
                   controller: tb,
                 ),

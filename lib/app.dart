@@ -19,6 +19,27 @@ class App extends StatelessWidget {
         MyRoutes.MAIN_PAGE2: (context) => MainPage2(),
       },
       initialRoute: MyRoutes.MAIN_PAGE,
+      theme: ThemeData(
+        textTheme: (
+          const TextTheme(
+            headline1: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
+            headline2: TextStyle(
+              fontSize: 16.0,
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.bold,
+            ),
+            headline3: TextStyle(
+              fontSize: 12.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          )
+        ),
+        fontFamily: 'Poppins',
+      ),
     );
   }
 }
